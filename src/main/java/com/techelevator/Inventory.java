@@ -116,10 +116,11 @@ public class Inventory {
     }
 
     public String toString(){
-        String output = "";
+        String output = "\n";
         for (Product product : inventory.keySet()){
-            output+= "Slot: " + product.getSlotLocation() + "| Name: " + product.getProductName() + "\t| $" + product.getPrice() + "\t| " + getItemsRemaining(product) + " Left in Stock.\n";
+            output+= "Slot: " + product.getSlotLocation() + "| Name: " + product.getProductName() + "| $" + product.getPrice() + "| " + getItemsRemaining(product) + " Left in Stock.\n";
         }
+        output+= "\n";
         return output;
     }
 
