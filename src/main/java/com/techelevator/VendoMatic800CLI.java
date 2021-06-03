@@ -59,6 +59,7 @@ public class VendoMatic800CLI {
                 // Select Product code
             } else if (purchaseChoice.equals("3")) {
                 // Finish Transaction code
+                machineBalance.makeChange();
                 purchaseWindowOpen = false;
             } else {
                 System.out.println("\nThat was not a valid option.\n");
