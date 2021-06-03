@@ -24,6 +24,12 @@ public class Menu {
 		return choice;
 	}
 
+	public Object getPurchaseChoicesFromOptions(Object[] options) {
+		Object choice = getChoiceFromOptions(options);
+		out.println("Current Balance Provided: ");
+		return choice;
+	}
+
 	private Object getChoiceFromUserInput(Object[] options) {
 		Object choice = null;
 		String userInput = in.nextLine();
@@ -50,4 +56,5 @@ public class Menu {
 		out.print(System.lineSeparator() + "Please choose an option >>> ");
 		out.flush();
 	}
+
 }
