@@ -47,7 +47,7 @@ public class VendoMatic800CLI {
             System.out.println("\n############# PURCHASE MENU ##############");
             System.out.print(
                     "\n(1) Feed Money" +
-                    "\n(2) Select " +
+                    "\n(2) Select Product" +
                     "\n(3) Finish Transaction" +
                     "\n\nCurrent Money Provided: $" + machineBalance.getBalance() +
                     "\n\nPlease choose an option >>> ");
@@ -57,6 +57,14 @@ public class VendoMatic800CLI {
                 feedMoneyMenu();
             } else if (purchaseChoice.equals("2")) {
                 // Select Product code
+                System.out.print(stock);
+                System.out.print("Please choose a slot option (i.e. A3) >>> ");
+                String productChoice = in.nextLine().toLowerCase();
+                boolean validProductChoice = stock.itemExists(productChoice);
+
+//                boolean productNotSoldOut = stock.isSoldOut(productChoice);
+//                while ()
+
             } else if (purchaseChoice.equals("3")) {
                 // Finish Transaction code
                 purchaseWindowOpen = false;

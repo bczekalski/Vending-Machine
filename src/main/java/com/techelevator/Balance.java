@@ -14,5 +14,4 @@ public class Balance {
         balance = balance.add(BigDecimal.valueOf(value));
     }
 
-
 }
