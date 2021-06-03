@@ -59,14 +59,25 @@ public class VendoMatic800CLI {
                 // Select Product code
                 System.out.print(stock);
                 System.out.print("Please choose a slot option (i.e. A3) >>> ");
-                String productChoice = in.nextLine().toLowerCase();
+                String productChoice = in.nextLine().toUpperCase();
                 boolean validProductChoice = stock.itemExists(productChoice);
-
-//                boolean productNotSoldOut = stock.isSoldOut(productChoice);
-//                while ()
-
+                if (validProductChoice) {
+                    System.out.println("You have selected: " + productChoice);
+                    Product productToDispense = stock.getStringToProduct(productChoice);
+                    if (stock.isSoldOut(productToDispense)) {
+                        System.out.println("Sorry, that product is sold out!");
+                    } else if (machineBalance.getBalance().compareTo(BigDecimal.valueOf(productToDispense.getPrice())) >= 0) {
+                        machineBalance.addMoney(-productToDispense.getPrice());
+                        System.out.println("Now dispensing " + productToDispense.getProductName() + " which costs $" + productToDispense.getPrice());
+                        System.out.println(stock.dispenseItem(productToDispense));
+                        System.out.println("Money Remaining: $" + machineBalance.getBalance());
+                    } else {
+                        System.out.println("Please add additional money using the Feed Money option to purchase this product.");
+                    }
+                }
             } else if (purchaseChoice.equals("3")) {
                 // Finish Transaction code
+                machineBalance.makeChange();
                 purchaseWindowOpen = false;
             } else {
                 System.out.println("\nThat was not a valid option.\n");
