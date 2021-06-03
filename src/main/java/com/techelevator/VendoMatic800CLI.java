@@ -47,7 +47,7 @@ public class VendoMatic800CLI {
             System.out.println("\n############# PURCHASE MENU ##############");
             System.out.print(
                     "\n(1) Feed Money" +
-                    "\n(2) Select " +
+                    "\n(2) Select Product" +
                     "\n(3) Finish Transaction" +
                     "\n\nCurrent Money Provided: $" + machineBalance.getBalance() +
                     "\n\nPlease choose an option >>> ");
@@ -57,6 +57,24 @@ public class VendoMatic800CLI {
                 feedMoneyMenu();
             } else if (purchaseChoice.equals("2")) {
                 // Select Product code
+                System.out.print(stock);
+                System.out.print("Please choose a slot option (i.e. A3) >>> ");
+                String productChoice = in.nextLine().toUpperCase();
+                boolean validProductChoice = stock.itemExists(productChoice);
+                if (validProductChoice) {
+                    System.out.println("You have selected: " + productChoice);
+                    Product productToDispense = stock.getStringToProduct(productChoice);
+                    if (stock.isSoldOut(productToDispense)) {
+                        System.out.println("Sorry, that product is sold out!");
+                    } else if (machineBalance.getBalance().compareTo(BigDecimal.valueOf(productToDispense.getPrice())) >= 0) {
+                        machineBalance.addMoney(-productToDispense.getPrice());
+                        System.out.println("Now dispensing " + productToDispense.getProductName() + " which costs $" + productToDispense.getPrice());
+                        System.out.println(stock.dispenseItem(productToDispense));
+                        System.out.println("Money Remaining: $" + machineBalance.getBalance());
+                    } else {
+                        System.out.println("Please add additional money using the Feed Money option to purchase this product.");
+                    }
+                }
             } else if (purchaseChoice.equals("3")) {
                 // Finish Transaction code
                 machineBalance.makeChange();

@@ -17,7 +17,7 @@ public class Balance {
         return balance;
     }
 
-    public void addMoney(int value) {
+    public void addMoney(double value) {
         balance = balance.add(BigDecimal.valueOf(value));
     }
 

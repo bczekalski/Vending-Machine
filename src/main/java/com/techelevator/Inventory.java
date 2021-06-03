@@ -121,11 +121,14 @@ public class Inventory {
     }
 
     public String toString(){
-        String output = "\n";
+        String output = "\n###################################################\nSLOT|        NAME         | PRICE | QUANTITY\n";
         for (Product product : inventory.keySet()){
-            output+= "Slot: " + product.getSlotLocation() + "| Name: " + product.getProductName() + "| $" + product.getPrice() + "| " + getItemsRemaining(product) + " Left in Stock.\n";
+            String productNameFiller = "                    ";
+            String productNameFilled = product.getProductName() + productNameFiller.substring(0, productNameFiller.length() - product.getProductName().length());
+            String formattedPrice = String.format("%.02f", product.getPrice());
+            output+= "  " + product.getSlotLocation() + "| " + productNameFilled + "| $" + formattedPrice + " | " + getItemsRemaining(product) + " Left in Stock\n";
         }
-        output+= "\n";
+        output+= "###################################################\n";
         return output;
     }
 
