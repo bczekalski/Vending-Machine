@@ -1,10 +1,17 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Balance {
 
     private BigDecimal balance = BigDecimal.ZERO;
+    private File log = new File("Log.txt");
 
     public BigDecimal getBalance() {
         return balance;
@@ -34,9 +41,22 @@ public class Balance {
             nickelCount++;
         }
 
-        System.out.println("*** The Vending Machine Dispenses " + quarterCount + " Quarters, " + dimeCount + " Dimes, and " + nickelCount + " Nickels. ***");
+        System.out.println("*** The Vending Machine Dispenses " + quarterCount + " Quarters, " + dimeCount + " Dimes, and " + nickelCount + " Nickels. Totaling to $"+ balance + " ***");
 
         System.out.println("Change has been returned. Balance is now $" + balance + ".");
+    }
+
+    public void addToLogProduct(Product purchasedProduct){
+
+        try (PrintWriter writer = new PrintWriter(log);){
+            Date date = new Date();
+            Format formatter = new SimpleDateFormat("YYYY/MM/dd hh:mm:ss aa");
+            writer.print(">" + formatter.format(date) + " " + purchasedProduct.getProductName());
+        }catch(FileNotFoundException e){
+            System.out.println("You should not be reading this line! the Log file should already exist!");
+        }
+
+
     }
 
 
