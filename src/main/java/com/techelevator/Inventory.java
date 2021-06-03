@@ -139,4 +139,13 @@ public class Inventory {
         }
         return false;
     }
+
+    public Product getStringToProduct(String input){
+        for (Product product : inventory.keySet()){
+            if (product.getSlotLocation().equals(input)){
+                return product;
+            }
+        }
+        return null;
+    }
 }
