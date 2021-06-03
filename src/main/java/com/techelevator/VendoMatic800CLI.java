@@ -10,7 +10,7 @@ public class VendoMatic800CLI {
 
     private static final String MAIN_MENU_DISPLAY = "(1) Display Vending Machine Items\n(2) Purchase\n(3) Exit\n\nPlease choose an option >>> ";
     private static BigDecimal balance = BigDecimal.ZERO;
-    private static final String PURCHASE_MENU_DISPLAY = "(1) Feed Money\n(2) Select Product\n(3) Finish Transaction\n\nCurrent Money Provided: $" + balance + "\n\nPlease choose an option >>> ";
+    private static String PURCHASE_MENU_DISPLAY = "(1) Feed Money\n(2) Select Product\n(3) Finish Transaction\n\nCurrent Money Provided: $" + balance + "\n\nPlease choose an option >>> ";
     private static Scanner in = new Scanner(System.in);
     private static Inventory stock = new Inventory();
 
@@ -35,6 +35,7 @@ public class VendoMatic800CLI {
                         // Feed Money code
                     } else if (purchaseChoice.equals("2")) {
                         // Select Product code
+                        System.out.println("What item would");
                     } else if (purchaseChoice.equals("3")) {
                         // Finish Transaction code
                         purchaseWindowOpen = false;

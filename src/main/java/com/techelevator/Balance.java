@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class Customer {
+public class Balance {
 
 
 

@@ -130,4 +130,13 @@ public class Inventory {
         }
         return false;
     }
+
+    public boolean itemExists(String userSaid){
+        for (Product product : inventory.keySet()){
+            if (product.getSlotLocation().equals(userSaid)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
