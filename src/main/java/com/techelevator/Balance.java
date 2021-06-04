@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Balance {
 
@@ -93,8 +95,6 @@ public class Balance {
             System.out.println("You should not be reading this line! IOException");
         }
 
-
     }
-
 
 }
