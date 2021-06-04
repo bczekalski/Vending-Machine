@@ -66,7 +66,7 @@ public class Menu {
                     if (stock.isSoldOut(productToDispense)) {
                         System.out.println("Sorry, that product is sold out!");
                     } else if (machineBalance.getBalance().compareTo(BigDecimal.valueOf(productToDispense.getPrice())) >= 0) {
-                        machineBalance.addMoney(-productToDispense.getPrice());
+                        machineBalance.addToLogProduct(productToDispense);
                         System.out.println("Now dispensing " + productToDispense.getProductName() + "\nwhich costs $" + productToDispense.getPrice());
                         System.out.println(stock.dispenseItem(productToDispense));
                         System.out.println("Money Remaining: $" + machineBalance.getBalance());
@@ -78,7 +78,7 @@ public class Menu {
                 }
             } else if (purchaseChoice.equals("3")) {
                 // Finish Transaction code
-                machineBalance.makeChange();
+                machineBalance.addToLogGiveChange();
                 purchaseWindowOpen = false;
             } else {
                 System.out.println("\nThat was not a valid option.\n");
@@ -100,13 +100,13 @@ public class Menu {
                             "\n\nPlease choose an option >>> ");
             String moneyChoice = in.nextLine();
             if (moneyChoice.equals("1")) {
-                machineBalance.addMoney(1);
+                machineBalance.addToLogFeeder("1");
             } else if (moneyChoice.equals("2")) {
-                machineBalance.addMoney(2);
+                machineBalance.addToLogFeeder("2");
             } else if (moneyChoice.equals("5")) {
-                machineBalance.addMoney(5);
+                machineBalance.addToLogFeeder("5");
             } else if (moneyChoice.equals("10")) {
-                machineBalance.addMoney(10);
+                machineBalance.addToLogFeeder("10");
             } else if (moneyChoice.equals("0")) {
                 feedMoneyMenuOpen = false;
             } else {
