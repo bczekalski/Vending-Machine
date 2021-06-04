@@ -41,7 +41,7 @@ public class Balance {
             nickelCount++;
         }
 
-        System.out.println("*** The Vending Machine Dispenses... ***\n" + quarterCount + " Quarters,\n" + dimeCount + " Dimes, and\n" + nickelCount + " Nickels.\nTotaling to $"+ balanceChangeTotal);
+        System.out.println("*** The Vending Machine Dispenses... ***\n" + quarterCount + " Quarters,\n" + dimeCount + " Dimes,\n" + nickelCount + " Nickels.\nTotaling to $"+ balanceChangeTotal);
 
         System.out.println("Change has been returned. Balance is now $" + balance + ".");
     }
