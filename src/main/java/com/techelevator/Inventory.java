@@ -121,7 +121,7 @@ public class Inventory {
     }
 
     public String toString(){
-        String output = "\n###################################################\nSLOT|        NAME         | PRICE | QUANTITY\n";
+        String output = "\n###################################################\nSLOT|        NAME         | PRICE |     QUANTITY\n";
         for (Product product : inventory.keySet()){
             String productNameFiller = "                    ";
             String productNameFilled = product.getProductName() + productNameFiller.substring(0, productNameFiller.length() - product.getProductName().length());
