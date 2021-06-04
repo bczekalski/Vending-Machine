@@ -23,6 +23,8 @@ public class Balance {
         int quarterCount = 0;
         int dimeCount = 0;
         int nickelCount = 0;
+        BigDecimal balanceChangeTotal = BigDecimal.ZERO;
+        balanceChangeTotal = balanceChangeTotal.add(balance);
 
         while (balance.compareTo(BigDecimal.valueOf(.25)) >= 0){
             balance = balance.subtract(BigDecimal.valueOf(0.25));
@@ -39,7 +41,7 @@ public class Balance {
             nickelCount++;
         }
 
-        System.out.println("*** The Vending Machine Dispenses " + quarterCount + " Quarters, " + dimeCount + " Dimes, and " + nickelCount + " Nickels. Totaling to $"+ balance + " ***");
+        System.out.println("*** The Vending Machine Dispenses... ***\n" + quarterCount + " Quarters,\n" + dimeCount + " Dimes, and\n" + nickelCount + " Nickels.\nTotaling to $"+ balanceChangeTotal);
 
         System.out.println("Change has been returned. Balance is now $" + balance + ".");
     }

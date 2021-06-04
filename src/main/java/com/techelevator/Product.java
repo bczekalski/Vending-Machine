@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class Product {
+public class Product implements Dispensable {
     private String slotLocation;
     private String productName;
     private double price;

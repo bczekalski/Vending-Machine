@@ -1,0 +1,11 @@
+##########################################
+##### WELCOME TO THE VENDO-MATIC-800 #####
+##########################################
+
+############### MAIN MENU ################
+
+(1) Display Vending Machine Items
+(2) Purchase
+(3) Exit
+
+Please choose an option >>> 
