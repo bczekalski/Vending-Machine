@@ -9,6 +9,13 @@ import java.util.Map;
 public class InventoryTests {
 
     @Test
+    public void testing_get_string_to_product_should_give_me_product_name(){
+        Inventory stock = new Inventory();
+        Product product = stock.getStringToProduct("A1");
+        Assert.assertEquals("Potato Crisps", product.getProductName());
+    }
+
+    @Test
     public void get_items_remaining_test_for_b3_should_return_5(){
         Inventory stock = new Inventory();
         Assert.assertEquals("5", stock.getItemsRemaining(stock.getStringToProduct("B3")));
@@ -75,7 +82,6 @@ public class InventoryTests {
         stock.dispenseItem(product);
         Assert.assertEquals("SOLD OUT", stock.getItemsRemaining(product));
     }
-
 
 
 
