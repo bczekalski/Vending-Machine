@@ -107,12 +107,18 @@ public class Inventory {
         return inventory;
     }
 
+    public void setInventory(Map<Product, String> inventory) {
+        this.inventory = inventory;
+    }
+
     public String getItemsRemaining(Product product){
         return inventory.get(product);
     }
 
-    public String dispenseItem(Product purchasedProduct){
-        if (inventory.get(purchasedProduct).equals("1")){
+    public String dispenseItem(Product purchasedProduct) {
+        if (inventory.get(purchasedProduct).equals("SOLD OUT")){
+            return "This item is sold out, please try another item.";
+        }else if (inventory.get(purchasedProduct).equals("1")){
             this.inventory.put(purchasedProduct, "SOLD OUT");
         }else {
             this.inventory.put(purchasedProduct, String.valueOf(Integer.parseInt(inventory.get(purchasedProduct)) - 1));
@@ -126,7 +132,13 @@ public class Inventory {
             String productNameFiller = "                    ";
             String productNameFilled = product.getProductName() + productNameFiller.substring(0, productNameFiller.length() - product.getProductName().length());
             String formattedPrice = String.format("%.02f", product.getPrice());
-            output+= "  " + product.getSlotLocation() + "| " + productNameFilled + "| $" + formattedPrice + " | " + getItemsRemaining(product) + " Left in Stock\n";
+            String quantity;
+            if (getItemsRemaining(product).equals("SOLD OUT")){
+                quantity = "SOLD OUT";
+            }else{
+                quantity = getItemsRemaining(product) + " left in stock.";
+            }
+            output+= "  " + product.getSlotLocation() + "| " + productNameFilled + "| $" + formattedPrice + " | " + quantity + "\n";
         }
         output+= "###################################################\n";
         return output;
