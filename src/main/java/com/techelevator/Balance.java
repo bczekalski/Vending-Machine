@@ -40,6 +40,7 @@ public class Balance {
             balance = balance.subtract(BigDecimal.valueOf(0.5));
             nickelCount++;
         }
+        balance = BigDecimal.ZERO;
 
         System.out.println("*** The Vending Machine Dispenses... ***\n" + quarterCount + " Quarters,\n" + dimeCount + " Dimes,\n" + nickelCount + " Nickels.\nTotaling to $"+ balanceChangeTotal);
 
