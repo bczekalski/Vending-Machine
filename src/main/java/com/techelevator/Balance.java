@@ -1,8 +1,6 @@
 package com.techelevator;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.math.BigDecimal;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -48,12 +46,48 @@ public class Balance {
 
     public void addToLogProduct(Product purchasedProduct){
 
-        try (PrintWriter writer = new PrintWriter(log);){
+        try (FileWriter writer = new FileWriter(log, true)){
             Date date = new Date();
             Format formatter = new SimpleDateFormat("YYYY/MM/dd hh:mm:ss aa");
-            writer.print(">" + formatter.format(date) + " " + purchasedProduct.getProductName());
+            writer.append(">" + formatter.format(date) + " " + purchasedProduct.getProductName() + " " + purchasedProduct.getSlotLocation() + " $" + getBalance());
+            addMoney(-purchasedProduct.getPrice());
+            writer.append(" $" + getBalance() + "\n");
         }catch(FileNotFoundException e){
             System.out.println("You should not be reading this line! the Log file should already exist!");
+        } catch (IOException e) {
+            System.out.println("You should not be reading this line! IOException");
+        }
+
+
+    }
+
+    public void addToLogFeeder(String value){
+
+        try (FileWriter writer = new FileWriter(log, true)){
+            Date date = new Date();
+            Format formatter = new SimpleDateFormat("YYYY/MM/dd hh:mm:ss aa");
+            writer.append(">" + formatter.format(date) + " FEED MONEY: $" + getBalance());
+            addMoney(Double.parseDouble(value));
+            writer.append(" $" + getBalance() + "\n");
+        }catch(FileNotFoundException e){
+            System.out.println("You should not be reading this line! the Log file should already exist!");
+        } catch (IOException e) {
+            System.out.println("You should not be reading this line! IOException");
+        }
+    }
+
+    public void addToLogGiveChange(){
+
+        try (FileWriter writer = new FileWriter(log, true)){
+            Date date = new Date();
+            Format formatter = new SimpleDateFormat("YYYY/MM/dd hh:mm:ss aa");
+            writer.append(">" + formatter.format(date) + " GIVE CHANGE: $" + getBalance());
+            makeChange();
+            writer.append(" $" + getBalance() + "\n");
+        }catch(FileNotFoundException e){
+            System.out.println("You should not be reading this line! the Log file should already exist!");
+        } catch (IOException e) {
+            System.out.println("You should not be reading this line! IOException");
         }
 
 
